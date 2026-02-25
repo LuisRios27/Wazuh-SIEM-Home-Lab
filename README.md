@@ -16,19 +16,19 @@ El objetivo de este laboratorio fue desplegar un entorno de Centro de Operacione
 ## 📝 Pasos de Implementación
 
 ### 1. Despliegue de Infraestructura y Redes
-Se configuraron dos máquinas virtuales en VirtualBox bajo la misma red local. Se verificó la comunicación bidireccional mediante pruebas de conectividad (ping), asegurando que el endpoint pudiera enviar telemetría al indexador.
+Configuré dos máquinas virtuales en VirtualBox bajo la misma red local. Verifiqué la comunicación bidireccional mediante pruebas de conectividad (ping), asegurando que el endpoint pudiera enviar telemetría al indexador.
 
 ![Prueba de Conectividad](imagen-de-ping.png)
 *Prueba de conectividad exitosa desde el endpoint Windows hacia el servidor Wazuh.*
 
 ### 2. Instalación y Configuración del Agente
-Se inyectó el agente de Wazuh en la máquina Windows utilizando PowerShell con privilegios de administrador, forzando el inicio del servicio (`WazuhSvc`) y confirmando su estado "Active" desde el Dashboard central.
+Inyecté el agente de Wazuh en la máquina Windows utilizando PowerShell con privilegios de administrador, forzando el inicio del servicio (`WazuhSvc`) y confirmando su estado "Active" desde el Dashboard central.
 
 ![Agente Activo](dashboard-con-agente.png)
 *El endpoint Windows 10 reportando telemetría en tiempo real al SIEM.*
 
 ### 3. Simulación de Ataque (Generación de Ruido)
-Para probar las capacidades de detección, se ejecutó un ataque simulado de fuerza bruta local contra el endpoint de Windows, generando múltiples intentos de inicio de sesión fallidos de manera consecutiva.
+Para probar las capacidades de detección, ejecuté un "ataque" simulado de fuerza bruta local contra el endpoint de Windows, generando múltiples intentos de inicio de sesión fallidos de manera consecutiva.
 
 ### 4. Threat Hunting y Análisis de Logs
 Utilizando el módulo de Threat Hunting de Wazuh, audité los registros de seguridad. Logré identificar e investigar exitosamente los eventos críticos generados por la simulación, aislando las alertas. (Logon Failure).
